@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> To do list </title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.9.0.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/seguranca.js"></script>
+    <script src="Scripts/bind.js"></script>
+    <script src="Scripts/tarefas.js"></script>
+    <script src="Scripts/home.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="home.html" class="navbar-brand"> To do List </a>
+            <a id="sair" href="Index.html" class="navbar-text navbar-right"> Sair </a>
+            <span id="nomeDoUsuario" class="navbar-text navbar-right"> Bem vindo </span>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="container">
+        <div class="page-header">
+            <h1> Lista de Tarefas </h1>
+        </div>       
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title"> Tarefas </span>
+            </div>
+            <div class="panel-body">
+                <ul id="listaDeTarefas" class="list-unstyled">
+                    
+                </ul>
+                
+                <hr/>
+                
+                <div class="form-group form-inline">                    
+                    <input id="txtDescricaoTarefa" type="text" class="form-control" style="width: 500px" />
+                    <button id="adicionarTarefa" type="button" class="btn btn-info" value="+">+</button>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <footer>
+            <p> jijn on </p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title> To Do List </title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/bootstrap-theme.css" rel="stylesheet" />
+    <script src="Scripts/jquery-1.9.0.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/seguranca.js"></script>
+    <script src="Scripts/bind.js"></script>
+    <script src="Scripts/usuarios.js"></script>
+    <script src="Scripts/login.js"></script>
+</head>
+<body>
+    <div class="page-header" style="text-align: center">
+        <h1> To do List </h1>
+    </div>
+    
+    <br/>
+
+    <div class="panel panel-default center-block" style="width: 500px;">
+        <div class="panel-heading"> Login </div>
+        <br />
+
+        <div class="panel-body">
+            <form id="frmLogin" method="GET" action="/home.html">
+                <div class="form-group">
+                    <label for="txtEmail"> Email </label>
+                    <input class="form-control" type="text" id="txtEmail" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="txtSenha"> Senha </label>
+                    <input class="form-control" type="password" id="txtSenha" required />
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <button id="btnLogin" class="btn btn-info center-block" type="submit" value="Entrar"> Entrar </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <br/>
+
+    <div style="text-align: center">
+        <a href="/cadastro.html"> Ainda não é cadastrado? Clique aqui e cadastre-se </a>
+    </div>
+</body>
+</html>
