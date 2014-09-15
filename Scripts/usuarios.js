@@ -29,7 +29,7 @@ function cadastrarUsuario(nome, email, senha) {
 }
 
 function usuarioJaExiste(usuario, usuarios) {
-    var usuarioEncontrado = $.grep(usuarios, function(item, indice) {
+    var usuarioEncontrado = $.grep(usuarios, function(item) {
         return item.email.trim() === usuario.email.trim();
     });
 

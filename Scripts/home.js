@@ -1,33 +1,40 @@
 ﻿$(document).ready(function() {
     recuperarNomeDoUsuarioLogado();
+    atualizarQuantidadeDeTarefasPendentes();
 
     listarTarefas();
 
-    $("#adicionarTarefa").click(function() {
+    $("#frmTarefa").submit(function(e) {
         bind();
 
-        cadastrarTarefa(formulario.txtDescricaoTarefa, false);
+        var tarefaCadastrada = cadastrarTarefa(formulario.txtDescricaoTarefa, false);
 
-        formulario.txtDescricaoTarefa = "";
-
+        if (!tarefaCadastrada) {
+            e.preventDefault();
+            return false;
+        }
+        
         listarTarefas();
+
+        return tarefaCadastrada;
     });
 
     $("input[type='checkbox']").click(function() {
-        var descricao = $(this).find("+ span").html();
+        var descricao = $(this).find("+ span");
         var concluida = $(this).prop("checked");
 
         if ($(this).prop("checked")) {
-            $(this).find("+ span").css("text-decoration", "line-through");
+            descricao.css("text-decoration", "line-through");
         }
         else {
-            $(this).find("+ span").css("text-decoration", "none");
+            descricao.css("text-decoration", "none");
         }
 
-        atualizarTarefa(new Tarefa(descricao, concluida));
+        atualizarTarefa(new Tarefa(descricao.html(), concluida));
+        atualizarQuantidadeDeTarefasPendentes();
     });
 
-    $("a#sair").click(sair);    
+    $("a#sair").click(limparAutorizacao);    
 });
 
 function recuperarNomeDoUsuarioLogado() {
@@ -35,7 +42,7 @@ function recuperarNomeDoUsuarioLogado() {
 }
 
 function listarTarefas() {
-    var tarefas = buscarTarefas();
+    var tarefas = buscarTarefasPorUsuario();
 
     var listaDeTarefas = $("#listaDeTarefas");
 
@@ -50,6 +57,8 @@ function listarTarefas() {
     });
 }
 
-function sair() {
-    limparAutorizacao();
+function atualizarQuantidadeDeTarefasPendentes() {
+    var quantidadeDeTarefasPendentes = buscarTarefasPendentesDoUsuario().length;    
+
+    $("#tarefasPendentes").html(quantidadeDeTarefasPendentes);
 }

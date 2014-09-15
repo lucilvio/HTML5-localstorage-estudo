@@ -13,47 +13,40 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="home.html" class="navbar-brand"> To do List </a>
-            <a id="sair" href="Index.html" class="navbar-text navbar-right"> Sair </a>
-            <span id="nomeDoUsuario" class="navbar-text navbar-right"> Bem vindo </span>
-        </div>
+        <span class="navbar-text" style="color: lightgray"> Bem vindo <span id="nomeDoUsuario"></span> </span>
+        <span class="navbar-text" style="color: lightgray"><span id="tarefasPendentes" class="badge">0</span> Tarefa(s) Pendente(s) </span>
+        <a id="sair" href="Index.html" class="navbar-link navbar-text pull-right" style="color: lightgray"> Sair </a>
     </div>
-    <br/>
-    <br/>
-    <div class="container">
+
+    <div class="container" style="padding: 60px">
         <div class="page-header">
             <h1> Lista de Tarefas </h1>
-        </div>       
+        </div>
 
         <div class="panel panel-default">
             <div class="panel-heading">
                 <span class="panel-title"> Tarefas </span>
             </div>
             <div class="panel-body">
-                <ul id="listaDeTarefas" class="list-unstyled">
-                    
-                </ul>
-                
-                <hr/>
-                
-                <div class="form-group form-inline">                    
-                    <input id="txtDescricaoTarefa" type="text" class="form-control" style="width: 500px" />
-                    <button id="adicionarTarefa" type="button" class="btn btn-info" value="+">+</button>
-                </div>
+                <ul id="listaDeTarefas" class="list-unstyled"></ul>
+
+                <hr />
+
+                <form id="frmTarefa" class="form-inline">
+                    <div class="form-group">
+                        <input id="txtDescricaoTarefa" type="text" class="form-control" style="width: 500px" required />
+                        <button type="submit" class="btn btn-info" value="+">+</button>
+                    </div>
+                </form>
+
             </div>
         </div>
-
-        <hr />
-
-        <footer>
-            <p> jijn on </p>
-        </footer>
     </div>
+    
+    <footer style="position: fixed; height: 60px; bottom: 0; width: 100%;background-color: #f5f5f5">
+        <div class="navbar-fixed-bottom container">
+            <p> © 2014 Lucilvio Lima </p>
+        </div>
+    </footer>
 </body>
 </html>

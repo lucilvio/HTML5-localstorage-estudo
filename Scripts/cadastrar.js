@@ -14,6 +14,10 @@
 
         return usuarioCadastrado;
     });
+
+    $("#voltar").click(function() {
+        history.back(1);
+    });
 });
 
 function senhasConferem(senha, senhaDeConfirmacao) {
