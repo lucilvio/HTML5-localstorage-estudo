@@ -10,9 +10,9 @@
             return false;
         }
 
-        cadastrarUsuario(formulario.txtNome, formulario.txtEmail, formulario.txtSenha);
+        var usuarioCadastrado = cadastrarUsuario(formulario.txtNome, formulario.txtEmail, formulario.txtSenha);
 
-        return true;
+        return usuarioCadastrado;
     });
 });
 
