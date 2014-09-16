@@ -1,8 +1,10 @@
 ﻿$(document).ready(function () {
     $("#frmCadastro").submit(function (e) {
-        bind("frmCadastro");
+        formulario.bind("frmCadastro");
 
-        if (!senhasConferem(formulario.txtSenha, formulario.txtConfirmarSenha))
+        var usuario = new dados.Usuario(formulario.campos.txtNome, formulario.campos.txtEmail, formulario.campos.txtSenha);
+
+        if (!senhasConferem(usuario.senha, formulario.campos.txtConfirmarSenha))
         {
             alert("As senhas não conferem.");
             e.preventDefault();
@@ -10,7 +12,7 @@
             return false;
         }
 
-        var usuarioCadastrado = cadastrarUsuario(formulario.txtNome, formulario.txtEmail, formulario.txtSenha);
+        var usuarioCadastrado = dados.cadastrarUsuario(usuario);
 
         return usuarioCadastrado;
     });

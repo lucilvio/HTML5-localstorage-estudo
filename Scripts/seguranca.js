@@ -1,50 +1,52 @@
-var paginasLivreDeAutorizacao = ["/index.html", "/cadastro.html"];
+(function(seguranca, $, undefined) {
+    var paginasLivreDeAutorizacao = ["/index.html", "/cadastro.html"];
 
-var chaveSessaoAutorizacao = "_autorizacao";
-var autorizacao = { usuario: {}, autorizado: false };
+    var chaveSessaoAutorizacao = "_autorizacao";
+    var autorizacao = { usuario: {}, autorizado: false };
 
-$(document).ready(function () {
-    if (!paginaExigeAutorizacao())
-        return;
+    seguranca.verificarAutorizacao = function () {
+        if (!paginaExigeAutorizacao())
+            return;
 
-    var sessaoAutorizado = sessionStorage.getItem(chaveSessaoAutorizacao);
+        var sessaoAutorizado = sessionStorage.getItem(chaveSessaoAutorizacao);
 
-    if (sessaoAutorizado == null)
-        redirecionarParaLogin();
+        if (sessaoAutorizado == null)
+            redirecionarParaLogin();
 
-    autorizacao = JSON.parse(sessaoAutorizado);
+        autorizacao = JSON.parse(sessaoAutorizado);
 
-    if (autorizacao.autorizado == false)
-        redirecionarParaLogin();
-});
+        if (autorizacao.autorizado == false)
+            redirecionarParaLogin();
+    };
 
-function autorizar(usuario) {
-    autorizacao.usuario = new Usuario(usuario.nome, usuario.email);
-    autorizacao.autorizado = true;
+    seguranca.autorizar = function (usuario) {
+        autorizacao.usuario = new dados.Usuario(usuario.nome, usuario.email);
+        autorizacao.autorizado = true;
 
-    sessionStorage.setItem(chaveSessaoAutorizacao, JSON.stringify(autorizacao));
-}
+        sessionStorage.setItem(chaveSessaoAutorizacao, JSON.stringify(autorizacao));
+    };
 
-function limparAutorizacao() {
-    sessionStorage.removeItem(chaveSessaoAutorizacao);
-}
+    seguranca.limparAutorizacao = function () {
+        sessionStorage.removeItem(chaveSessaoAutorizacao);
+    };
 
-function pegarUsuarioAutorizado() {
-    if (!autorizacao.autorizado)
-        return null;
+    seguranca.pegarUsuarioAutorizado = function () {
+        if (!autorizacao.autorizado)
+            return null;
 
-    return autorizacao.usuario;
-}
+        return autorizacao.usuario;
+    };
 
-function paginaExigeAutorizacao() {
-    var pagina = window.location.pathname;
+    function paginaExigeAutorizacao() {
+        var pagina = window.location.pathname;
 
-    if ($.inArray(pagina, paginasLivreDeAutorizacao) == -1)
-        return true;
+        if ($.inArray(pagina, paginasLivreDeAutorizacao) == -1)
+            return true;
 
-    return false;
-}
+        return false;
+    }
 
-function redirecionarParaLogin() {
-    window.location.replace("index.html");
-}
+    function redirecionarParaLogin() {
+        window.location.replace("index.html");
+    }
+}(window.seguranca = window.seguranca || {}, jQuery));

@@ -1,13 +1,17 @@
-﻿$(document).ready(function() {
-    recuperarNomeDoUsuarioLogado();
+﻿$(document).ready(function () {
+    seguranca.verificarAutorizacao();
+
+    preencherNomeDoUsuarioLogado();
     atualizarQuantidadeDeTarefasPendentes();
 
     listarTarefas();
 
     $("#frmTarefa").submit(function(e) {
-        bind();
+        formulario.bind();
 
-        var tarefaCadastrada = cadastrarTarefa(formulario.txtDescricaoTarefa, false);
+        var tarefa = new dados.Tarefa(formulario.campos.txtDescricaoTarefa, false);
+
+        var tarefaCadastrada = dados.cadastrarTarefa(tarefa);
 
         if (!tarefaCadastrada) {
             e.preventDefault();
@@ -30,19 +34,19 @@
             descricao.css("text-decoration", "none");
         }
 
-        atualizarTarefa(new Tarefa(descricao.html(), concluida));
+        dados.atualizarTarefa(new dados.Tarefa(descricao.html(), concluida));
         atualizarQuantidadeDeTarefasPendentes();
     });
 
-    $("a#sair").click(limparAutorizacao);    
+    $("a#sair").click(seguranca.limparAutorizacao);    
 });
 
-function recuperarNomeDoUsuarioLogado() {
-    $("#nomeDoUsuario").html($("#nomeDoUsuario").html() + pegarUsuarioAutorizado().nome);
+function preencherNomeDoUsuarioLogado() {
+    $("#nomeDoUsuario").html($("#nomeDoUsuario").html() + seguranca.pegarUsuarioAutorizado().nome);
 }
 
 function listarTarefas() {
-    var tarefas = buscarTarefasPorUsuario();
+    var tarefas = dados.buscarTarefasPorUsuario();
 
     var listaDeTarefas = $("#listaDeTarefas");
 
@@ -58,7 +62,7 @@ function listarTarefas() {
 }
 
 function atualizarQuantidadeDeTarefasPendentes() {
-    var quantidadeDeTarefasPendentes = buscarTarefasPendentesDoUsuario().length;    
+    var quantidadeDeTarefasPendentes = dados.buscarTarefasPendentesDoUsuario().length;    
 
     $("#tarefasPendentes").html(quantidadeDeTarefasPendentes);
 }
